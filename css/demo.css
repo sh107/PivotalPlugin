@@ -1,0 +1,88 @@
+html, body, aside {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+body {
+    overflow: hidden;
+    padding: 40px;
+    background-attachment: fixed;
+    background-position: 50% 0;
+    background-size: cover;
+    -webkit-text-size-adjust: none;
+}
+a {
+    text-decoration: underline;
+}
+a:hover {
+    text-decoration: none;
+}
+.bg-red {
+    background-image: url(../img/bg-red.jpg);
+}
+.bg-orange {
+    background-image: url(../img/bg-orange.jpg);
+}
+.bg-yellow {
+    background-image: url(../img/bg-yellow.jpg);
+}
+.bg-green {
+    background-image: url(../img/bg-green.jpg);
+}
+.bg-cyan {
+    background-image: url(../img/bg-cyan.jpg);
+}
+.bg-blue {
+    background-image: url(../img/bg-blue.jpg);
+}
+.bg-purple {
+    background-image: url(../img/bg-purple.jpg);
+}
+.bg-pink {
+    background-image: url(../img/bg-pink.jpg);
+}
+.bg-black {
+    background-image: url(../img/bg-black.jpg);
+}
+.body {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+.feature{
+     background:url(../img/feature.png) no-repeat !important;
+ }
+.bug{
+    background:url(../img/bug.png) no-repeat !important;
+}
+.chore{
+    background:url(../img/chore.png) no-repeat !important;
+}
+.release{
+    background:url(../img/release.png) no-repeat !important;
+}
+.level0{
+    background:url(../img/select_0_linear.png) no-repeat !important;
+}
+.level1{
+    background:url(../img/select_1_linear.png) no-repeat !important;
+}
+.level2{
+    background:url(../img/select_2_linear.png) no-repeat !important;
+}
+.level3{
+    background:url(../img/select_3_linear.png) no-repeat !important;
+}
+.results{
+    height:400px;
+    overflow-y: auto;
+}
+@media screen and (max-width: 1000px) {
+    body {
+        padding: 20px;
+    }
+}
+@media screen and (max-width: 767px) {
+    body {
+        padding: 10px;
+    }
+}

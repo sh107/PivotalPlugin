@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sky Tabs</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/sky-tabs.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/sky-tabs-ie8.css">
+    <script src="js/sky-tabs-ie8.js"></script>
+    <![endif]-->
+</head>
+
+<body class="bg-cyan">
+<div class="body">
+
+    <!-- tabs -->
+    <div class="sky-tabs sky-tabs-pos-left sky-tabs-anim-flip sky-tabs-response-to-icons">
+        <input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
+        <label for="sky-tab1"><span><span><i class="fa fa-hourglass-start"></i>started</span></span></label>
+
+        <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
+        <label for="sky-tab2"><span><span><i class="fa fa-hourglass-end"></i>finished</span></span></label>
+
+        <!--<input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">-->
+        <!--<label for="sky-tab3"><span><span><i class="fa fa-check-square-o"></i>delivered</span></span></label>-->
+
+        <input type="radio" name="sky-tabs" id="sky-tab4" class="sky-tab-content-4">
+        <label for="sky-tab4"><span><span><i class="fa fa-check"></i>accepted</span></span></label>
+
+        <input type="radio" name="sky-tabs" id="sky-tab5" class="sky-tab-content-5">
+        <label for="sky-tab5"><span><span><i class="fa fa-archive"></i>planned</span></span></label>
+
+        <input type="radio" name="sky-tabs" id="sky-tab6" class="sky-tab-content-6">
+        <label for="sky-tab6"><span><span><i class="fa fa-adjust"></i>unstarted</span></span></label>
+
+        <input type="radio" name="sky-tabs" id="sky-tab7" class="sky-tab-content-7">
+        <label for="sky-tab7"><span><span><i class="fa fa-question"></i>unscheduled</span></span></label>
+
+        <!--<input type="radio" name="sky-tabs" id="sky-tab8" class="sky-tab-content-8">-->
+        <!--<label for="sky-tab8"><span><span><i class="fa fa-close"></i>rejected</span></span></label>-->
+
+        <ul>
+            <li class="sky-tab-content-1">
+                <div class="typography">
+                    <div class='loading'>data loading, please wait...</div>
+                    <div class='results'>
+                        <p id='result_title_1'></p>
+                        <div id='result_area_1'></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="sky-tab-content-2">
+                <div class="typography">
+                    <div class='loading'>data loading, please wait...</div>
+                    <div class='results'>
+                        <p id='result_title_2'></p>
+                        <div id='result_area_2'></div>
+                    </div>
+                </div>
+            </li>
+
+            <!--<li class="sky-tab-content-3">-->
+                <!--<div class="typography">-->
+                    <!--<div class='loading'>data loading, please wait...</div>-->
+                    <!--<div class='results'>-->
+                        <!--<p id='result_title_3'></p>-->
+                        <!--<div id='result_area_3'></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+
+            <li class="sky-tab-content-4">
+                <div class="typography">
+                    <div class='loading'>data loading, please wait...</div>
+                    <div class='results'>
+                        <p id='result_title_4'></p>
+                        <div id='result_area_4'></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="sky-tab-content-5">
+                <div class="typography">
+                    <div class='loading'>data loading, please wait...</div>
+                    <div class='results'>
+                        <p id='result_title_5'></p>
+                        <div id='result_area_5'></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="sky-tab-content-6">
+                <div class="typography">
+                    <div class='loading'>data loading, please wait...</div>
+                    <div class='results'>
+                        <p id='result_title_6'></p>
+                        <div id='result_area_6'></div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="sky-tab-content-7">
+                <div class="typography">
+                    <div class='loading'>data loading, please wait...</div>
+                    <div class='results'>
+                        <p id='result_title_7'></p>
+                        <div id='result_area_7'></div>
+                    </div>
+                </div>
+            </li>
+
+            <!--<li class="sky-tab-content-8">-->
+                <!--<div class="typography">-->
+                    <!--<div class='loading'>data loading, please wait...</div>-->
+                    <!--<div class='results'>-->
+                        <!--<p id='result_title_8'></p>-->
+                        <!--<div id='result_area_8'></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <!--/ tabs -->
+
+</div>
+
+<script type="text/javascript">
+
+    var projectId;
+    var tokenId = "468b288fdef109275f3501d4d9a95aed";
+
+    $( document ).ajaxStart(function() {
+        $( "#loading" ).show();
+    });
+
+    $( document ).ajaxStop(function() {
+        $( "#loading" ).hide();
+    });
+
+    // fetch user stories via tracker API
+    function executeTrackerApiFetch(statusNumber) {
+
+        // compose request URL
+        var url = 'https://www.pivotaltracker.com/services/v5';
+        url += '/projects/' + "1138318";
+        url += '/stories?with_state=';
+        url += getStatus(statusNumber);
+
+        console.log(url);
+
+        // do API request to get story names
+        $.ajax({
+            url: url,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-TrackerToken', tokenId);
+            }
+        }).done(function (result) {
+                displayTrackerApiResponse(result, statusNumber);
+            }
+        );
+
+    }
+
+    function fetchTrackerIteration() {
+        // get parameters
+        // projectId = $('#project_id').val();
+        var label = $('#label_id').val();
+
+        //get sprint id from radio button selection
+        var sprint = $('input[name=panel_choice]:checked', '#user_selection').val();
+
+        // get project id from radio button selection
+        var projectId = $('input[name=project_choice]:checked', '#user_selection').val();
+
+
+        // compose request URL
+        var url = 'https://www.pivotaltracker.com/services/v5';
+        url += '/projects/' + projectId;
+
+        if (sprint==='') {
+            url += '/iterations'
+        } else {
+            url += '/iterations?scope='+sprint;
+        };
+
+
+        console.log(url);
+
+
+        //do API request to iteration stories
+        $.ajax({
+            url: url,
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('X-TrackerToken', tokenId);
+            }
+        }).done(getStoriesFromIteration);
+
+    }
+
+    function getStoriesFromIteration(iteration) {
+        stories = iteration[0].stories;
+        clean_stories =[];
+
+        // check if features wanted from featrue checkbox
+        var want_features = $('input[name=feature]:checked', '#user_selection').val()
+
+        // remove stories that are not features
+        if (want_features==="feature") {
+
+            for (var i = 0; i < stories.length; i++) {
+
+                if (stories[i].story_type==="feature") {
+                    clean_stories.push(stories[i])};
+            };
+
+            displayTrackerApiResponse(clean_stories);
+
+        } else {
+
+            displayTrackerApiResponse(stories);
+        }
+
+    }
+
+
+    function displayTrackerApiResponse(stories, statusNumber) {
+        //console.log(statusNumber);
+
+        //var search_results = "Here go your " + stories.length + " stories, dawg!";
+        //$('#result_title').html(search_results);
+
+        var content = '';
+        $('#result_area_' + statusNumber).empty();
+
+        $('#result_area_' + statusNumber).append('<ul>');
+
+        for (var i = 0; i < stories.length; i++) {
+            //console.log(stories[i]);
+            var name = stories[i].name;
+            // console.log(name);
+
+            var description = stories[i].description;
+            if (description == undefined || description == null) {
+                description = "";//htmlForTextWithEmbeddedNewlines(description);
+            };
+
+            var estimate = stories[i].estimate;
+            if (estimate===undefined) {estimate='0'};
+            // console.log(estimate);
+
+            var story_type = stories[i].story_type;
+
+            var url = stories[i].url;
+
+            // console.log(description);
+
+            content = '<li class="' + story_type + '" title="' + story_type + '">';
+//            content += '['+ getEstimate(estimate) + '] ';
+            content += '<a href="'+ url + '" title="' +  description + '">' + name + '</a>';
+
+            content += '</li>';
+
+            $('#result_area_' + statusNumber).append(content);
+
+        }
+
+        $('#result_area_' + statusNumber).append('</ul>');
+
+    }
+
+    function getEstimate(estimate) {
+            switch(estimate){
+                case 3:
+                    return "Critical";
+                case 2:
+                    return "High";
+                case 1:
+                    return "Normal";
+                case 0:
+                    return "Low";
+                default:
+                    return "Low";
+            }
+    }
+
+    function htmlForTextWithEmbeddedNewlines(text) {
+        var htmls = [];
+        var lines = text.split(/\n/);
+        // The temporary <div/> is to perform HTML entity encoding reliably.
+        //
+        // document.createElement() is *much* faster than jQuery('<div/>')
+        // http://stackoverflow.com/questions/268490/
+        //
+        // You don't need jQuery but then you need to struggle with browser
+        // differences in innerText/textContent yourself
+        var tmpDiv = jQuery(document.createElement('div'));
+        for (var i = 0 ; i < lines.length ; i++) {
+            htmls.push(tmpDiv.text(lines[i]).html());
+        }
+        return htmls.join("<br>");
+    }
+
+    function printLikeABoss () {
+        $('#user_selection').hide();
+        window.print();
+    }
+
+    function getStatus(statusNumber){
+        switch(statusNumber){
+            case 1:
+                return "started";
+            case 2:
+                return "finished";
+            case 3:
+                return "delivered";
+            case 4:
+                return "accepted";
+            case 5:
+                return "planned";
+            case 6:
+                return "unstarted";
+            case 7:
+                return "unscheduled";
+            case 8:
+                return "rejected";
+            default:
+                return "accepted";
+        }
+    }
+
+    $(function() {
+
+        // hide messages on loading page
+        $('.loading').hide();
+        executeTrackerApiFetch(1);
+
+        $("#sky-tab1").on("click", function() {
+            executeTrackerApiFetch(1);
+        });
+
+        $("#sky-tab2").on("click", function() {
+            executeTrackerApiFetch(2);
+        });
+        $("#sky-tab3").on("click", function() {
+            executeTrackerApiFetch(3);
+        });
+
+        $("#sky-tab4").on("click", function() {
+            executeTrackerApiFetch(4);
+        });
+
+        $("#sky-tab5").on("click", function() {
+            executeTrackerApiFetch(5);
+        });
+
+        $("#sky-tab6").on("click", function() {
+            executeTrackerApiFetch(6);
+        });
+
+        $("#sky-tab7").on("click", function() {
+            executeTrackerApiFetch(7);
+        });
+
+        $("#sky-tab8").on("click", function() {
+            executeTrackerApiFetch(8);
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
