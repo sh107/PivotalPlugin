@@ -25,16 +25,20 @@ a:hover {
     margin: 0 auto;
 }
 .feature{
-     background:url(../img/feature.png) no-repeat !important;
+    background:url(http://phenomenal-h2020.eu/home/wp-content/uploads/2016/06/feature.png) no-repeat !important;
+    background-position: 0px 5px !important;
  }
 .bug{
-    background:url(../img/bug.png) no-repeat !important;
+    background:url(http://phenomenal-h2020.eu/home/wp-content/uploads/2016/06/bug.png) no-repeat !important;
+    background-position: 0px 5px !important;
 }
 .chore{
-    background:url(../img/chore.png) no-repeat !important;
+    background:url(http://phenomenal-h2020.eu/home/wp-content/uploads/2016/06/chore.png) no-repeat !important;
+    background-position: 0px 5px !important;
 }
 .release{
-    background:url(../img/release.png) no-repeat !important;
+    background:url(http://phenomenal-h2020.eu/home/wp-content/uploads/2016/06/release.png) no-repeat !important;
+    background-position: 0px 5px !important;
 }
 .level0{
     background:url(../img/select_0_linear.png) no-repeat !important;

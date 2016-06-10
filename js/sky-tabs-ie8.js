@@ -1,14 +1,14 @@
-$(function()
+jQuery(function()
 {
-    $('.sky-tabs > input:checked').each(function()
+    jQuery('.sky-tabs > input:checked').each(function()
     {
-        $(this).next().addClass('active');
-        $(this).siblings('ul').find('.' + $(this).attr('class')).show();
+        jQuery(this).next().addClass('active');
+        jQuery(this).siblings('ul').find('.' + jQuery(this).attr('class')).show();
     });
 
-    $('.sky-tabs > label').on('click', function()
+    jQuery('.sky-tabs > label').on('click', function()
     {
-        $(this).addClass('active').siblings().removeClass('active');
-        $(this).siblings('ul').find('.' + $(this).prev().attr('class')).show().siblings().hide();
+        jQuery(this).addClass('active').siblings().removeClass('active');
+        jQuery(this).siblings('ul').find('.' + jQuery(this).prev().attr('class')).show().siblings().hide();
     });
 });

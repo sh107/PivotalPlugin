@@ -62,7 +62,7 @@
     -webkit-transition: background 0.4s, color 0.4s;
 }
 .sky-tabs > label:hover span span {
-    background: #2da5da;
+    background: #556292;
     color: #fff;
 }
 .sky-tabs > label.disabled span span {
@@ -73,7 +73,7 @@
     cursor: default;
 }
 .sky-tabs > input:checked + label span span {
-    background: #2da5da;
+    background: #556292;
     color: #fff;
 }
 .sky-tabs > .switcher {
@@ -572,7 +572,7 @@
 }
 .sky-tabs .typography a {
     text-decoration: underline;
-    color: #2da5da;
+    color: #556292;
 }
 .sky-tabs .typography a:hover {
     text-decoration: none;
@@ -590,7 +590,7 @@
 }
 .sky-tabs .typography .link {
     text-decoration: underline;
-    color: #2da5da;
+    color: #556292;
     cursor: pointer;
 }
 .sky-tabs .typography .link:hover {
